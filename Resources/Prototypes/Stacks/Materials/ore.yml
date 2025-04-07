@@ -4,7 +4,7 @@
   icon: { sprite: /Textures/Objects/Materials/ore.rsi, state: gold }
   spawn: GoldOre1
   maxCount: 30
-  
+
 - type: stack
   id: DiamondOre
   name: rough diamond
@@ -67,4 +67,11 @@
   name: salt
   icon: { sprite: /Textures/Objects/Materials/ore.rsi, state: salt }
   spawn: Salt1
+  maxCount: 30
+
+- type: stack
+  id: BluespaceOre
+  name: bluespace crystal
+  icon: { sprite: /Textures/_DeadSpace/Objects/Materials/ore.rsi, state: bluespace_crystal_ore }
+  spawn: BluespaceOre1
   maxCount: 30
