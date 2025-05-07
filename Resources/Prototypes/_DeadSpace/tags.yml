@@ -26,6 +26,24 @@
   id: ChefGoldenKnife
 
 - type: Tag
+  id: ClarkeCentralControlModule
+
+- type: Tag
+  id: ClarkeLArm
+
+- type: Tag
+  id: ClarkeLLeg
+
+- type: Tag
+  id: ClarkePeripheralsControlModule
+
+- type: Tag
+  id: ClarkeRArm
+
+- type: Tag
+  id: ClarkeRLeg
+
+- type: Tag
   id: DockCentcommERT
 
 - type: Tag
@@ -34,10 +52,10 @@
 - type: Tag
   id: FelinidFood
 
-- type: Tag 
+- type: Tag
   id: FittableInBackpackCase
 
-- type: Tag 
+- type: Tag
   id: HardHat
 
 - type: Tag
@@ -63,5 +81,8 @@
 
 - type: Tag
   id: SnapPop
+
+- type: Tag
+  id: WeaponMech
 
   # Обязательно в алфавитном порядке

@@ -1,0 +1,58 @@
+- type: entity
+  parent: BaseMech
+  id: MechClarke
+  name: К.Л.А.Р.К.
+  description: Быстрый и прочный шахтерский мех с усиленной конструкцией. Оснащен встроенным мощным прожектором.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: clarke
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBorg
+  - type: Mech
+    baseState: clarke
+    openState: clarke-open
+    brokenState: clarke-broken
+    mechToPilotDamageMultiplier: 0.7
+    airtight: false
+    pilotWhitelist:
+      components:
+      - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1.2
+    damage:
+      types:
+        Blunt: 18
+        Structural: 25
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.8
+  - type: UnpoweredFlashlight
+  - type: ToggleableLightVisuals
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 8
+    energy: 4
+  - type: Construction
+    graph: Clarke
+    node: start
+  - type: Damageable
+    damageModifierSet: StrongMetallic
+
+- type: entity
+  parent: MechClarke
+  id: MechClarkeBattery
+  suffix: Батарея
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHyper

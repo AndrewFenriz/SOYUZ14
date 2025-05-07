@@ -1,0 +1,37 @@
+- type: entity
+  id: MechProtoKineticAccelerator
+  name: протокинетический ускоритель
+  parent: BaseMechEquipment
+  description: Усиленная версия ПКА для мехов. Заряжается быстрее и обладает повышенной ударной силой.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_kineticgun
+  - type: Item
+    size: Ginormous
+  - type: MechEquipment
+    canbeused: True
+  - type: Battery
+    maxCharge: 100
+  - type: Gun
+    fireRate: 0.8
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletKinetic
+    capacity: 3
+    count: 3
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: AmmoCounter
+  - type: UseDelay
+    delay: 1
+  - type: MechGun
+  - type: Tag
+    tags:
+    - WeaponMech

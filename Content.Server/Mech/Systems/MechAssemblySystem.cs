@@ -8,17 +8,12 @@ using Robust.Shared.Containers;
 
 namespace Content.Server.Mech.Systems;
 
-/// <summary>
-/// Handles <see cref="MechAssemblyComponent"/> and the insertion
-/// and removal of parts from the assembly.
-/// </summary>
 public sealed class MechAssemblySystem : EntitySystem
 {
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
 
-    /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<MechAssemblyComponent, ComponentInit>(OnInit);
@@ -32,6 +27,9 @@ public sealed class MechAssemblySystem : EntitySystem
 
     private void OnInteractUsing(EntityUid uid, MechAssemblyComponent component, InteractUsingEvent args)
     {
+        if (args.Handled) // DS14: помечаем, что событие обработано
+            return;
+
         if (_toolSystem.HasQuality(args.Used, component.QualityNeeded))
         {
             foreach (var tag in component.RequiredParts.Keys)
@@ -39,29 +37,44 @@ public sealed class MechAssemblySystem : EntitySystem
                 component.RequiredParts[tag] = false;
             }
             _container.EmptyContainer(component.PartsContainer);
+            args.Handled = true;
             return;
         }
 
         if (!TryComp<TagComponent>(args.Used, out var tagComp))
             return;
 
+        bool partAdded = false; // DS14: флаг установки детали
         foreach (var (tag, val) in component.RequiredParts)
         {
             if (!val && _tag.HasTag(tagComp, tag))
             {
                 component.RequiredParts[tag] = true;
-                _container.Insert(args.Used, component.PartsContainer);
+                if (_container.Insert(args.Used, component.PartsContainer))
+                {
+                    partAdded = true; // DS14: отслеживание успешной установки
+                    args.Handled = true;
+                }
                 break;
             }
         }
 
-        //check to see if we have all the parts
-        foreach (var val in component.RequiredParts.Values)
+        if (!partAdded)
+            return;
+
+        foreach (var val in component.RequiredParts.Values) // DS14: валидация сборки
         {
             if (!val)
                 return;
         }
-        Spawn(component.FinishedPrototype, Transform(uid).Coordinates);
-        EntityManager.DeleteEntity(uid);
+
+        var coords = Transform(uid).Coordinates;
+        var mech = Spawn(component.FinishedPrototype, coords);
+
+        if (mech.Valid)
+        {
+            EntityManager.DeleteEntity(uid); // DS14: удаление
+            args.Handled = true;
+        }
     }
 }

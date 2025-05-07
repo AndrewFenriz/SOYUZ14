@@ -263,6 +263,12 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField]
     public Vector2 DefaultDirection = new Vector2(0, -1);
+
+    /// <summary>
+    /// Whether melee attacks should be blocked when the gun is on cooldown from shooting.
+    /// </summary>
+    [DataField]
+    public bool StopMeleeOnShoot = true;
 }
 
 [Flags]
@@ -272,5 +278,5 @@ public enum SelectiveFire : byte
     // Combat mode already functions as the equivalent of Safety
     SemiAuto = 1 << 0,
     Burst = 1 << 1,
-    FullAuto = 1 << 2, // Not in the building!
+    FullAuto = 1 << 2,
 }

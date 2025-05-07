@@ -3,6 +3,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
 using Robust.Client.GameObjects;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
+using Robust.Shared.Audio.Systems; // DS14: Добавлено для звуковой системы
 
 namespace Content.Client.Mech;
 
@@ -10,6 +11,7 @@ namespace Content.Client.Mech;
 public sealed class MechSystem : SharedMechSystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!; // DS14: Добавлена зависимость аудио системы
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -17,6 +19,7 @@ public sealed class MechSystem : SharedMechSystem
         base.Initialize();
 
         SubscribeLocalEvent<MechComponent, AppearanceChangeEvent>(OnAppearanceChanged);
+        SubscribeLocalEvent<MechComponent, MechEntryEvent>(OnMechEntry); // DS14: Добавлена подписка на событие входа
     }
 
     private void OnAppearanceChanged(EntityUid uid, MechComponent component, ref AppearanceChangeEvent args)
@@ -42,5 +45,11 @@ public sealed class MechSystem : SharedMechSystem
 
         layer.SetState(state);
         args.Sprite.DrawDepth = (int) drawDepth;
+    }
+
+    // DS14: Добавлен метод обработки входа в меха
+    private void OnMechEntry(EntityUid uid, MechComponent component, MechEntryEvent args)
+    {
+        _audio.PlayPredicted(component.MechEntrySound, uid, args.Args.User);
     }
 }
