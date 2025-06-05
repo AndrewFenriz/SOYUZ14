@@ -33,16 +33,27 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
             return;
 
         var fireMode = GetMode(component);
+        var protoName = GetPrototypeNameSafe(fireMode.Prototype);
 
-        if (!_prototypeManager.TryIndex<EntityPrototype>(fireMode.Prototype, out var proto))
-            return;
-
-        args.PushMarkup(Loc.GetString("gun-set-fire-mode", ("mode", proto.Name)));
+        if (protoName != null)
+            args.PushMarkup(Loc.GetString("gun-set-fire-mode", ("mode", protoName)));
     }
 
     private BatteryWeaponFireMode GetMode(BatteryWeaponFireModesComponent component)
     {
         return component.FireModes[component.CurrentFireMode];
+    }
+
+    // Добавлено: Безопасное получение имени прототипа без ошибок
+    private string? GetPrototypeNameSafe(string prototypeId)
+    {
+        if (_prototypeManager.HasIndex<EntityPrototype>(prototypeId))
+            return _prototypeManager.Index<EntityPrototype>(prototypeId).Name;
+
+        if (_prototypeManager.HasIndex<HitscanPrototype>(prototypeId))
+            return _prototypeManager.Index<HitscanPrototype>(prototypeId).ID;
+
+        return null;
     }
 
     private void OnGetVerb(EntityUid uid, BatteryWeaponFireModesComponent component, GetVerbsEvent<Verb> args)
@@ -59,21 +70,21 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         for (var i = 0; i < component.FireModes.Count; i++)
         {
             var fireMode = component.FireModes[i];
-            var entProto = _prototypeManager.Index<EntityPrototype>(fireMode.Prototype);
-            var index = i;
+            var protoName = GetPrototypeNameSafe(fireMode.Prototype);
 
+            if (protoName == null)
+                continue;
+
+            var index = i;
             var v = new Verb
             {
                 Priority = 1,
                 Category = VerbCategory.SelectType,
-                Text = entProto.Name,
+                Text = protoName,
                 Disabled = i == component.CurrentFireMode,
                 Impact = LogImpact.Medium,
                 DoContactInteraction = true,
-                Act = () =>
-                {
-                    TrySetFireMode(uid, component, index, args.User);
-                }
+                Act = () => TrySetFireMode(uid, component, index, args.User)
             };
 
             args.Verbs.Add(v);
@@ -113,30 +124,39 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         component.CurrentFireMode = index;
         Dirty(uid, component);
 
-        if (_prototypeManager.TryIndex<EntityPrototype>(fireMode.Prototype, out var prototype))
+        var protoName = GetPrototypeNameSafe(fireMode.Prototype);
+        if (protoName != null)
         {
             if (TryComp<AppearanceComponent>(uid, out var appearance))
-                _appearanceSystem.SetData(uid, BatteryWeaponFireModeVisuals.State, prototype.ID, appearance);
+                _appearanceSystem.SetData(uid, BatteryWeaponFireModeVisuals.State, fireMode.Prototype, appearance);
 
             if (user != null)
-                _popupSystem.PopupClient(Loc.GetString("gun-set-fire-mode", ("mode", prototype.Name)), uid, user.Value);
+                _popupSystem.PopupClient(Loc.GetString("gun-set-fire-mode", ("mode", protoName)), uid, user.Value);
         }
 
-        if (TryComp(uid, out ProjectileBatteryAmmoProviderComponent? projectileBatteryAmmoProviderComponent))
+        // Обновляем компоненты только если прототип существует
+        if (_prototypeManager.HasIndex<HitscanPrototype>(fireMode.Prototype) &&
+            TryComp(uid, out HitscanBatteryAmmoProviderComponent? hitscanProvider))
         {
-            // TODO: Have this get the info directly from the batteryComponent when power is moved to shared.
-            var OldFireCost = projectileBatteryAmmoProviderComponent.FireCost;
-            projectileBatteryAmmoProviderComponent.Prototype = fireMode.Prototype;
-            projectileBatteryAmmoProviderComponent.FireCost = fireMode.FireCost;
-
-            float FireCostDiff = (float)fireMode.FireCost / (float)OldFireCost;
-            projectileBatteryAmmoProviderComponent.Shots = (int)Math.Round(projectileBatteryAmmoProviderComponent.Shots / FireCostDiff);
-            projectileBatteryAmmoProviderComponent.Capacity = (int)Math.Round(projectileBatteryAmmoProviderComponent.Capacity / FireCostDiff);
-
-            Dirty(uid, projectileBatteryAmmoProviderComponent);
-
-            var updateClientAmmoEvent = new UpdateClientAmmoEvent();
-            RaiseLocalEvent(uid, ref updateClientAmmoEvent);
+            hitscanProvider.Prototype = fireMode.Prototype;
+            hitscanProvider.FireCost = fireMode.FireCost;
+            Dirty(uid, hitscanProvider);
         }
+        else if (_prototypeManager.HasIndex<EntityPrototype>(fireMode.Prototype) &&
+                 TryComp(uid, out ProjectileBatteryAmmoProviderComponent? projectileProvider))
+        {
+            var oldFireCost = projectileProvider.FireCost;
+            projectileProvider.Prototype = fireMode.Prototype;
+            projectileProvider.FireCost = fireMode.FireCost;
+
+            float fireCostDiff = (float)fireMode.FireCost / (float)oldFireCost;
+            projectileProvider.Shots = (int)Math.Round(projectileProvider.Shots / fireCostDiff);
+            projectileProvider.Capacity = (int)Math.Round(projectileProvider.Capacity / fireCostDiff);
+
+            Dirty(uid, projectileProvider);
+        }
+
+        var updateClientAmmoEvent = new UpdateClientAmmoEvent();
+        RaiseLocalEvent(uid, ref updateClientAmmoEvent);
     }
 }
