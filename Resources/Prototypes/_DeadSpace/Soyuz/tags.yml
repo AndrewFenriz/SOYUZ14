@@ -1,5 +1,8 @@
 - type: Tag
-  id: SheetTungsten
+  id: MagazineLightRifleAsVal
 
 - type: Tag
-  id: IngotTungsten
+  id: MagazineLightRifleVSS
+
+- type: Tag
+  id: MagazineRifleASH
