@@ -1,22 +1,24 @@
 - type: entity
   name: АШ-12
-  parent: BaseWeaponRifle
+  parent: [BaseWeaponRifle, BaseSecurityContraband]
   id: WeaponRifleASH12
   description: Крупнокалиберный штурмовой автомат, созданный в Центральном Конструкторско-исследовательском Комитет при НКВБ для нужд ССО СССП.
   components:
   - type: Sprite
-    sprite: _DeadSpace/Soyuz/Weapons/Guns/Rifles/ash.rsi
+    sprite: _DeadSpace/Soyuz/Objects/Weapons/Guns/Rifles/ash.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _DeadSpace/Soyuz/Weapons/Guns/Rifles/ash.rsi
+    sprite: _DeadSpace/Soyuz/Objects/Weapons/Guns/Rifles/ash.rsi
   - type: Gun
-    fireRate: 6.5
+    fireRate: 5
     soundGunshot:
       path: /Audio/_DeadSpace/Souyz/Weapons/Guns/Gunshots/ash12.ogg
+      params:
+        volume: 5
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
@@ -51,25 +53,35 @@
 
 - type: entity
   name: АКМС-У
-  parent: [BaseWeaponRifle, BaseSecurityContraband]
+  parent: [BaseItem, BaseSecurityContraband]
   id: WeaponRifleAKMCY
-  description: Укороченный вариант автомата АКМС.
+  description: Укороченный вариант автомата АКМС. В простонародии Ксюха
   components:
   - type: Sprite
-    sprite: _DeadSpace/Soyuz/Weapons/Guns/Rifles/aky.rsi
+    sprite: _DeadSpace/Soyuz/Objects/Weapons/Guns/Rifles/aky.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _DeadSpace/Soyuz/Weapons/Guns/Rifles/aky.rsi
+    sprite: _DeadSpace/Soyuz/Objects/Weapons/Guns/Rifles/aky.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: Item
     size: Large
+  - type: AmmoCounter
   - type: Gun
-    maxAngle: 19
+    minAngle: 10
+    maxAngle: 22
     fireRate: 5.5
     burstFireRate: 11
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+      - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
   - type: ChamberMagazineAmmoProvider
@@ -111,14 +123,14 @@
   description: Бесшумный автомат, используется в антитеррористических операциях.
   components:
   - type: Sprite
-    sprite: _DeadSpace/Soyuz/Weapons/Guns/Rifles/asval.rsi
+    sprite: _DeadSpace/Soyuz/Objects/Weapons/Guns/Rifles/asval.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _DeadSpace/Soyuz/Weapons/Guns/Rifles/asval.rsi
+    sprite: _DeadSpace/Soyuz/Objects/Weapons/Guns/Rifles/asval.rsi
   - type: Item
     size: Large
     shape:
@@ -128,6 +140,8 @@
     burstFireRate: 16
     soundGunshot:
       path: /Audio/_DeadSpace/Souyz/Weapons/Guns/Gunshots/vss.ogg
+      params:
+        volume: -5
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
@@ -167,26 +181,25 @@
   description: Бесшумная снайперская винтовка для подразделений специального назначения.
   components:
   - type: Sprite
-    sprite: _DeadSpace/Soyuz/Weapons/Guns/Rifles/vss.rsi
+    sprite: _DeadSpace/Soyuz/Objects/Weapons/Guns/Rifles/vss.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _DeadSpace/Soyuz/Weapons/Guns/Rifles/vss.rsi
+    sprite: _DeadSpace/Soyuz/Objects/Weapons/Guns/Rifles/vss.rsi
   - type: Item
     size: Large
     shape:
     - 0,0,3,2
   - type: Gun
-    projectileSpeed: 45
-    minAngle: 40
-    maxAngle: 60
-    fireRate: 6.5
-    burstFireRate: 16
+    fireRate: 5
+    burstFireRate: 12
     soundGunshot:
       path: /Audio/_DeadSpace/Souyz/Weapons/Guns/Gunshots/vss.ogg
+      params:
+        volume: -5
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg

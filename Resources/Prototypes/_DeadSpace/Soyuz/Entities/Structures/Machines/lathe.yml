@@ -25,11 +25,17 @@
     dynamicPacks:
     - SecurityAmmoTungsten
     - ProcessingTungsten
+    - PosketDefenseWeaponry
+    - BallisticsShotguns
+    - BallisticsAutomaticWeapons
+    - SecurityMagazine
+    - AdvancedBallisticsShotguns
+    - AdvancedBallisticsAutomaticWeapons
+    - AdvancedSecurityMagazine
+    - BallisticsLargeCaliberWeapons
   - type: MaterialStorage
     whitelist:
       tags:
         - Sheet
         - RawMaterial
         - Ingot
-        - IngotTungsten
-        - SheetTungsten

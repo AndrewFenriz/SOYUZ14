@@ -11,19 +11,10 @@
             "name": "base"
         },
         {
-            "name": "practice"
-        },
-        {
-            "name": "red"
-        },
-        {
-            "name": "uranium"
-        },
-        {
             "name": "mag-1"
         },
         {
-            "name": "tungsten"
+            "name": "icon"
         }
     ]
 }

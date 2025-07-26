@@ -164,4 +164,19 @@
   - MagazineRifleTungsten
   - MagazinePistolSubMachineGunTungsten
   - MagazinePistolTungsten
+  - MagazineLightRifleVSSTungsten
+
+- type: latheRecipePack
+  id: SecurityMagazine
+  recipes:
+  - MagazineLightRifleAsVal
+  - MagazineLightRifleAsValEmpty
+  - MagazineLightRifleAsValPractice
+  - MagazineLightRifleAsValUranium
+  - MagazineLightRifleAsValIncendiary
+  - MagazineLightRifleVSS
+  - MagazineLightRifleVSSEmpty
+  - MagazineLightRifleVSSPractice
+  - MagazineLightRifleVSSUranium
+  - MagazineLightRifleVSSIncendiary
 # DS14-Soyuz-end

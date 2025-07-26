@@ -787,4 +787,118 @@
   materials:
     Plastic: 500
     SheetTungsten: 500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleAsVal
+  result: MagazineLightRifleAsVal
+  materials:
+    Steel: 50
+    Plastic: 300
+    IngotTungsten: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleAsValEmpty
+  result: MagazineLightRifleAsValEmpty
+  materials:
+    Steel: 25
+    Plastic: 50
+    IngotTungsten: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleAsValPractice
+  result: MagazineLightRifleAsValPractice
+  materials:
+    Steel: 200
+    Plastic: 50
+    IngotTungsten: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleAsValUranium
+  result: MagazineLightRifleAsValUranium
+  materials:
+    Steel: 50
+    Plastic: 300
+    IngotTungsten: 100
+    Uranium: 300
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleAsValIncendiary
+  result: MagazineLightRifleAsValIncendiary
+  materials:
+    Steel: 50
+    Plastic: 400
+    IngotTungsten: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleAsVal
+  result: MagazineLightRifleAsVal
+  materials:
+    Steel: 50
+    Plastic: 300
+    IngotTungsten: 100
+    SheetTungsten: 360
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleVSS
+  result: MagazineLightRifleVSS
+  materials:
+    Steel: 50
+    Plastic: 150
+    IngotTungsten: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleVSSEmpty
+  result: MagazineLightRifleVSSEmpty
+  materials:
+    Steel: 25
+    Plastic: 25
+    IngotTungsten: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleVSSPractice
+  result: MagazineLightRifleVSSPractice
+  materials:
+    Steel: 100
+    Plastic: 50
+    IngotTungsten: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleVSSUranium
+  result: MagazineLightRifleVSSUranium
+  materials:
+    Steel: 25
+    Plastic: 150
+    IngotTungsten: 100
+    Uranium: 200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleVSSIncendiary
+  result: MagazineLightRifleVSSIncendiary
+  materials:
+    Steel: 50
+    Plastic: 200
+    IngotTungsten: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineLightRifleVSS
+  result: MagazineLightRifleVSS
+  materials:
+    Steel: 50
+    Plastic: 150
+    IngotTungsten: 100
+    SheetTungsten: 180
+
+
 # DS14-Soyuz-end

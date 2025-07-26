@@ -14,14 +14,14 @@
       tags:
         - CartridgeMagnum
     proto: CartridgeMagnum
-    capacity: 30
+    capacity: 20
   - type: Item
     size: Small
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _DeadSpace/Soyuz/Weapons/Guns/Ammunition/Magazine/Magnum/ash_mag.rsi
+    sprite: _DeadSpace/Soyuz/Objects/Weapons/Guns/Ammunition/Magazine/Magnum/ash_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -47,6 +47,21 @@
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-1
         map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineRifleASHEmpty
+  name: магазин АШ-12 (.45 магнум любые)
+  suffix: empty
+  parent: BaseMagazineRifleASH
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: MagazineRifleASHMagnumAP

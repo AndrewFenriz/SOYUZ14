@@ -6,7 +6,7 @@
   suffix: Сайга
   components:
   - type: Sprite
-    sprite: _DeadSpace/Soyuz/Weapons/Guns/Shotguns/saiga.rsi
+    sprite: _DeadSpace/Soyuz/Objects/Weapons/Guns/Shotguns/saiga.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -15,7 +15,7 @@
   - type: Item
     size: Large
   - type: Clothing
-    sprite: _DeadSpace/Soyuz/Weapons/Guns/Shotguns/saiga.rsi
+    sprite: _DeadSpace/Soyuz/Objects/Weapons/Guns/Shotguns/saiga.rsi
     quickEquip: false
     slots:
     - Back
@@ -23,10 +23,10 @@
   - type: AmmoCounter
   - type: GunRequiresWield 
   - type: Gun
-    fireRate: 2
-    selectedMode: FullAuto
+    fireRate: 1.5
+    selectedMode: SemiAuto
     availableModes:
-    - FullAuto
+      - SemiAuto
     soundGunshot:
       path: /Audio/_DeadSpace/Souyz/Weapons/Guns/Gunshots/saiga.ogg
     soundEmpty:
