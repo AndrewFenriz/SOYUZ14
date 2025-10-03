@@ -430,6 +430,7 @@
   - MagazineRifle
   - MagazineBoxRifle
 
+- type: thiefBackpackSet
   id: KedrSet
   name: ert-loadout-category-kedr-name
   description: ert-loadout-category-kedr-description

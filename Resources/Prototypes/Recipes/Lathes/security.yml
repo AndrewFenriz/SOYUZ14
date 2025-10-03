@@ -27,18 +27,11 @@
   abstract: true
   parent: BaseWeaponRecipe
   id: BaseWeaponRecipeMelee
- 
+
+- type: latheRecipe
   parent: BaseAmmoRecipe
   id: BaseEmptyAmmoRecipe
   completetime: 1
-
-# DS14-Soyuz-start
-- type: latheRecipe
-  abstract: true
-  parent: BaseWeaponRecipeLong
-  id: BaseWeaponRecipeVeryLong
-  completetime: 10
-# DS14-Soyuz-end
 
 # Recipes
 
@@ -60,6 +53,12 @@
   parent: BaseWeaponRecipe
   id: BaseWeaponRecipePractice
   completetime: 4
+
+- type: latheRecipe
+  abstract: true
+  parent: BaseWeaponRecipe
+  id: BaseWeaponRecipeVeryLong
+  completetime: 6
 
 - type: latheRecipe
   abstract: true
