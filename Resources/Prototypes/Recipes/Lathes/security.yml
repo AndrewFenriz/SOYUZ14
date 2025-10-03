@@ -28,6 +28,11 @@
   parent: BaseWeaponRecipe
   id: BaseWeaponRecipeMelee
 
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: BaseEmptyAmmoRecipe1
+  completetime: 1
+
 # Recipes
 
 - type: latheRecipe
