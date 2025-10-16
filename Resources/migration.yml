@@ -955,7 +955,7 @@ ClothingNeckHeadphones: ClothingMultipleHeadphones
 # 2025-06-23 - DS14
 EncryptionKeyTypan: EncryptionKeyTaipan
 ClothingBackpackSatchelTypan: ClothingBackpackSatchelTaipan
-ClothingBackpackSatchelTypanFilled: ClothingBackpackSatchelTaipanFilled
+ClothingBackpackSatchelTypanFilled: null
 ClothingBeltPlantTypan: ClothingBeltPlantTaipan
 ClothingBeltPlantTypanFilled: ClothingBeltPlantTaipanFilled
 TypanPlantBag: TaipanPlantBag
