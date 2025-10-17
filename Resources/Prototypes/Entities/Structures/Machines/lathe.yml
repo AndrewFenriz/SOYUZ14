@@ -412,6 +412,7 @@
     - SecurityWeapons
     - SecurityDisablers
     - ArmedTechFabCircuitboard # DS14-Soyuz
+    - ProcessingTungsten # DS14-Soyuz
   - type: MaterialStorage
     whitelist:
       tags:
