@@ -32,6 +32,7 @@
     - AdvancedBallisticsAutomaticWeapons # DS14-Soyuz
     - AdvancedSecurityMagazine # DS14-Soyuz
     - BallisticsLargeCaliberWeapons # DS14-Soyuz
+    - PosketDefenseWeaponry # DS14-Soyuz
     - AdvancedRiotControl
   - type: MaterialStorage
     whitelist:
