@@ -1,0 +1,71 @@
+ - type: entity
+   id: SpawnPointAdaxEVOLeader
+   parent: SpawnPointJobBase
+   name: лидер Адакс EVO
+   components:
+   - type: SpawnPoint
+     job_id: AdaxEVOLeader
+   - type: Sprite
+     layers:
+       - state: green
+       - state: ertleader
+
+ - type: entity
+   id: SpawnPointAdaxEVOAgent
+   parent: SpawnPointJobBase
+   name: агент Адакс EVO
+   components:
+   - type: SpawnPoint
+     job_id: AdaxEVOAgent
+   - type: Sprite
+     layers:
+       - state: green
+       - state: ertsecurity
+
+ - type: entity
+   id: SpawnPointCMULeader
+   parent: SpawnPointJobBase
+   name: лидер СМП
+   components:
+   - type: SpawnPoint
+     job_id: CMULeader
+   - type: Sprite
+     layers:
+       - state: green
+       - state: ertleader
+
+ - type: entity
+   id: SpawnPointCMUOperative
+   parent: SpawnPointJobBase
+   name: боец СМП
+   components:
+   - type: SpawnPoint
+     job_id: CMUOperative
+   - type: Sprite
+     layers:
+       - state: green
+       - state: ertsecurity
+
+ - type: entity
+   id: SpawnPointCMUMedic
+   parent: SpawnPointJobBase
+   name: медик СМП
+   components:
+   - type: SpawnPoint
+     job_id: CMUMedic
+   - type: Sprite
+     layers:
+       - state: green
+       - state: ertmedical
+
+ - type: entity
+   id: SpawnPointExecutioner
+   parent: SpawnPointJobBase
+   name: каратель
+   components:
+   - type: SpawnPoint
+     job_id: Executioner
+   - type: Sprite
+     layers:
+       - state: green
+       - state: ertsecurity

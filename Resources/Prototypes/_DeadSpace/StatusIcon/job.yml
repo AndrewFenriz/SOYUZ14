@@ -191,3 +191,28 @@
     sprite: /Textures/_DeadSpace/Interface/Misc/job_icons.rsi
     state: communicationofficer
   jobName: job-name-taipan-communications-officer
+
+
+- type: jobIcon
+  id: JobIconTaipanAdax
+  parent: JobIcon
+  icon:
+    sprite: /Textures/_DeadSpace/Interface/Misc/job_icons.rsi
+    state: adax
+  jobName: job-name-taipan-adax
+
+- type: jobIcon
+  id: JobIconCMU
+  parent: JobIcon
+  icon:
+    sprite: /Textures/_DeadSpace/Interface/Misc/job_icons.rsi
+    state: cmu
+  jobName: job-name-taipan-cmu
+
+- type: jobIcon
+  id: JobIconExecutioner
+  parent: JobIcon
+  icon:
+    sprite: /Textures/_DeadSpace/Interface/Misc/job_icons.rsi
+    state: executioner
+  jobName: job-name-taipan-executioner

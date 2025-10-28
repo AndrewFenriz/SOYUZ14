@@ -1,0 +1,32 @@
+- type: entity
+  parent: BaseItem
+  id: Flamethrower
+  name: огнемёт
+  description: Огнемёт пневматический высокого давления. Лучшая ветвь эволюции главного орудия военных преступлений Эры Земли.
+  components:
+  - type: Tag
+    tags:
+    - FlamethrowerNozzle
+  - type: Sprite
+    sprite: _DeadSpace/Objects/Weapons/Guns/Basic/flamethrower.rsi
+    state: icon
+  - type: Item
+    sprite: _DeadSpace/Objects/Weapons/Guns/Basic/flamethrower.rsi
+    size: Normal
+  - type: Gun
+    cameraRecoilScalar: 0
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_DeadSpace/Weapons/Guns/Flamethrower/flamethrower.ogg
+  - type: Appearance
+  - type: ClothingSlotAmmoProvider
+  - type: SlotBasedConnectedContainer
+    targetSlot: BACK
+    containerWhitelist:
+      tags:
+      - FlamethrowerBackTank
+  - type: UseDelay
+    delay: 0.75

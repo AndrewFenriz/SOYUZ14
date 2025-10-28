@@ -1,0 +1,89 @@
+- type: job
+  id: AdaxEVOLeader
+  name: Лидер отряда Адакс EVO
+  description: Вы руководите отрядом Адакс EVO, специализирующимся на устранении биологических угроз.
+  playTimeTracker: JobAdaxEVOLeader
+  setPreference: false
+  startingGear: AdaxEVOLeaderGear
+  icon: "JobIconNanotrasenRed"
+  supervisors: job-supervisors-taipan-command
+  canBeAntag: false
+  accessGroups:
+  - TaipanAccess
+
+- type: startingGear
+  id: AdaxEVOLeaderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTacticool
+    back: FlamethrowerPack
+    mask: ClothingMaskGasSyndicate
+    eyes: ClothingEyesHudTaipanAdvanced
+    ears: ClothingHeadsetAltTaipan
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitAdaxEVOLeader
+    shoes: ADTClothingShoesBootsMagAdvSynd
+    id: SyndiAgentPDA
+    suitstorage: AirTankFilled
+    belt: ClothingBeltMilitaryWebbing
+  storage:
+    back:
+    - WeaponShotgunKammerer
+    - GrenadeIncendiary
+    - CrowbarRed
+    - WeaponFlareGun
+    - BoxShotgunFlare
+    - MagazineShotgun
+    - MagazineShotgunSlug
+    - MagazineShotgunIncendiary
+    - MagazineShotgunBeanbag
+    - EmergencyMedipen
+    - BoxMRE
+    - PinpointerNuclear
+    - WeaponLaserSvalinn
+    - PowerCellSmall
+    - PowerCellMedium
+
+- type: job
+  id: AdaxEVOAgent
+  name: Агент отряда Адакс EVO
+  description: Вы являетесь важным членом команды Адакс EVO, специализирующейся на устранении биологических угроз.
+  playTimeTracker: JobAdaxEVOAgent
+  setPreference: false
+  startingGear: AdaxEVOAgentGear
+  icon: "JobIconNanotrasen"
+  supervisors: job-supervisors-taipan-command
+  canBeAntag: false
+  accessGroups:
+  - TaipanAccess
+
+- type: startingGear
+  id: AdaxEVOAgentGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTacticool
+    back: FlamethrowerPack
+    mask: ClothingMaskGasSyndicate
+    eyes: ClothingEyesHudTaipanAdvanced
+    ears: ClothingHeadsetAltTaipan
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitAdaxEVOAgent
+    shoes: ADTClothingShoesBootsMagAdvSynd
+    id: SyndiAgentPDA
+    suitstorage: AirTankFilled
+    belt: ClothingBeltMilitaryWebbing
+  storage:
+    back:
+    - WeaponShotgunKammerer
+    - GrenadeIncendiary
+    - CrowbarRed
+    - WeaponFlareGun
+    - BoxShotgunFlare
+    - MagazineShotgun
+    - MagazineShotgunSlug
+    - MagazineShotgunIncendiary
+    - MagazineShotgunBeanbag
+    - EmergencyMedipen
+    - BoxMRE
+    - WeaponDisabler
+    - WeaponLaserSvalinn
+    - PowerCellSmall
+    - PowerCellMedium

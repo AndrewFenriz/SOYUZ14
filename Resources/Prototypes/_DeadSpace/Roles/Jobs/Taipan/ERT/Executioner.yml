@@ -1,0 +1,54 @@
+- type: job
+  id: Executioner
+  name: Каратель
+  description: Вы — член элитного отряда, которого вызывают, когда станции грозит конец.
+  playTimeTracker: JobExecutioner
+  setPreference: false
+  startingGear: ExecutionerGear
+  icon: "JobIconExecutioner"
+  supervisors: job-supervisors-command
+  canBeAntag: false
+  accessGroups:
+  - TaipanAccess
+
+- type: startingGear
+  id: ExecutionerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackSyndicate
+    mask: ClothingMaskGasSyndicate
+    eyes: ClothingEyesHudTaipanAdvanced
+    ears: ClothingHeadsetAltTaipan
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitExecutioner
+    shoes: ADTClothingShoesBootsMagAdvSynd
+    id: SyndiPDA
+    pocket1: EnergySword
+    belt: ClothingBeltMilitaryWebbingMed
+  storage:
+    back:
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - C4
+    - C4
+    - C4
+    - C4
+    - WeaponPulseRifle
+    - WeaponRevolverMatebaAP
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - SpeedLoaderMagnumAP
+    - PinpointerNuclear
+    - BoxHandcuff
+    - EnergyShield
+    - JawsOfLife
+    - NukeCodePaper

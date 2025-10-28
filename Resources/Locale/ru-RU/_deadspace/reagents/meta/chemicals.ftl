@@ -6,3 +6,6 @@ reagent-desc-yellowcake = Урановый порошок, обработанн�
 
 reagent-name-uraniumhexafluoride = фторид урана
 reagent-desc-uraniumhexafluoride =  Светло-серое газообразное бинарное соединение урана со фтором.
+
+reagent-name-flamethrower-fuel = топливо для огнемёта
+reagent-desc-flamethrower-fuel= Топливо, которое используют в современных огнемётных установках.

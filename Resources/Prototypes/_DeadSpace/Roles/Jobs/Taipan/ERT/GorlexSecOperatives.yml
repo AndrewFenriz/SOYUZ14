@@ -1,0 +1,83 @@
+- type: job
+  id: CMULeader
+  name: Лидер СМП
+  description: Вы командуете высокотехнологичным и подготовленным отрядом GorlexSec для критических операций.
+  playTimeTracker: JobCMULeader
+  setPreference: false
+  startingGear: CMULeaderGear
+  icon: "JobIconCMU"
+  supervisors: job-supervisors-gorlex-command
+  canBeAntag: false
+  accessGroups:
+  - TaipanAccess
+
+- type: startingGear
+  id: CMULeaderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackSyndicate
+    mask: ClothingMaskGasSyndicate
+    eyes: ClothingEyesHudTaipanAdvanced
+    ears: ClothingHeadsetAltTaipan
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitSMULeader
+    shoes: ClothingShoesBootsCombatSyndie
+    id: SyndiPDA
+    suitstorage: AirTankFilled
+    belt: ClothingBeltMilitaryWebbing
+
+- type: job
+  id: CMUOperative
+  name: Боец СМП
+  description: Вы — часть высокотехнологичного и подготовленного отряда GorlexSec, участвуете в критических операциях.
+  playTimeTracker: JobCMUOperative
+  setPreference: false
+  startingGear: CMUOperativeGear
+  icon: "JobIconCMU"
+  supervisors: job-supervisors-cmu-leader
+  canBeAntag: false
+  accessGroups:
+  - TaipanAccess
+
+- type: startingGear
+  id: CMUOperativeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackSyndicate
+    mask: ClothingMaskGasSyndicate
+    eyes: ClothingEyesHudTaipanAdvanced
+    ears: ClothingHeadsetAltTaipan
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitSMUOperative
+    shoes: ClothingShoesBootsCombatSyndie
+    id: SyndiPDA
+    suitstorage: AirTankFilled
+    belt: ClothingBeltMilitaryWebbing
+
+- type: job
+  id: CMUMedic
+  name: Медик СМП
+  description: Вы — часть высокотехнологичного и подготовленного отряда GorlexSec, участвуете в критических операциях.
+  playTimeTracker: JobCMUMedic
+  setPreference: false
+  startingGear: CMUMedicGear
+  icon: "JobIconCMU"
+  supervisors: job-supervisors-cmu-leader
+  canBeAntag: false
+  accessGroups:
+  - TaipanAccess
+
+- type: startingGear
+  id: CMUMedicGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackSyndicate
+    mask: ClothingMaskGasSyndicate
+    eyes: ClothingEyesHudTaipanAdvanced
+    ears: ClothingHeadsetAltTaipan
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitSMUMedic
+    shoes: ClothingShoesBootsCombatSyndie
+    id: SyndiPDA
+    suitstorage: AirTankFilled
+    belt: ClothingBeltMilitaryWebbingMed

@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from TGMS at https://github.com/Cosmic-Overlord/RU-TerraGov-Marine-Corps/blob/HEAD/icons/obj/items/ammo.dmi, edited by andrew_fenriz (discord) for Space Station 14 server Мёртвый Космос",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "delays": [
+			[
+			  0.2,
+			  0.2,
+			  0.2,
+			  0.2,
+			  0.2,
+			  0.2
+			]
+        ]
+    },
+    {
+      "name": "equipped-BACKPACK",
+	  "directions": 4,
+	  "delays": [
+			[
+			  0.2,
+			  0.2,
+			  0.2,
+			  0.2
+			],
+			[
+			  0.2,
+			  0.2,
+			  0.2,
+			  0.2
+			],
+			[
+			  0.2,
+			  0.2,
+			  0.2,
+			  0.2
+			],
+			[
+			  0.2,
+			  0.2,
+			  0.2,
+			  0.2
+			]
+		]
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    }
+  ]
+}

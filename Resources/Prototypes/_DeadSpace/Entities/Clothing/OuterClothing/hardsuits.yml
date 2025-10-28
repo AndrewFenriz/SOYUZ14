@@ -101,3 +101,101 @@
     sprite: _DeadSpace/Clothing/OuterClothing/Hardsuits/taipan_co.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitTaipanCO
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
+# SMU Leader
+- type: entity
+  parent: ClothingOuterHardsuitSyndieCommander
+  id: ClothingOuterHardsuitSMULeader
+  name: скафандр лидера СМП
+  description: Защитный костюм, носимый лидером специального мобильного подразделения Синдиката.
+  components:
+  - type: Sprite
+    sprite: _DeadSpace/Clothing/OuterClothing/Hardsuits/smuleader.rsi
+  - type: Clothing
+    sprite: _DeadSpace/Clothing/OuterClothing/Hardsuits/smuleader.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSMULeader
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
+# SMU Operative
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSMUOperative
+  name: скафандр бойца СМП
+  description: Защитный костюм для оперативников специального мобильного подразделения Синдиката.
+  components:
+  - type: Sprite
+    sprite: _DeadSpace/Clothing/OuterClothing/Hardsuits/smuoperative.rsi
+  - type: Clothing
+    sprite: _DeadSpace/Clothing/OuterClothing/Hardsuits/smuoperative.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSMUOperative
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
+# SMU Medic
+- type: entity
+  parent: ClothingOuterHardsuitSyndieMedic
+  id: ClothingOuterHardsuitSMUMedic
+  name: скафандр медика СМП
+  description: Лёгкий скафандр медика специального мобильного подразделения Синдиката.
+  components:
+  - type: Sprite
+    sprite: _DeadSpace/Clothing/OuterClothing/Hardsuits/smumedic.rsi
+  - type: Clothing
+    sprite: _DeadSpace/Clothing/OuterClothing/Hardsuits/smumedic.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSMUMedic
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
+# Adax EVO Leader
+- type: entity
+  parent: ClothingOuterHardsuitCBURNLeader
+  id: ClothingOuterHardsuitAdaxEVOLeader
+  name: скафандр лидера Adax EVO
+  description: Специализированный лидерский скафандр для тактических операций.
+  components:
+  - type: Sprite
+    sprite: _DeadSpace/Clothing/OuterClothing/Hardsuits/adaxevoleader.rsi
+  - type: Clothing
+    sprite: _DeadSpace/Clothing/OuterClothing/Hardsuits/adaxevoleader.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetAdaxEVOLeader
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
+# Adax EVO Agent
+- type: entity
+  parent: ClothingOuterHardsuitCBURN
+  id: ClothingOuterHardsuitAdaxEVOAgent
+  name: скафандр агента Adax EVO
+  description: Компактный и продвинутый скафандр, идеальный для тактических операций.
+  components:
+  - type: Sprite
+    sprite: _DeadSpace/Clothing/OuterClothing/Hardsuits/adaxevoagent.rsi
+  - type: Clothing
+    sprite: _DeadSpace/Clothing/OuterClothing/Hardsuits/adaxevoagent.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetAdaxEVOAgent
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
+# Executioner
+- type: entity
+  parent: ClothingOuterHardsuitDeathsquad
+  id: ClothingOuterHardsuitExecutioner
+  name: скафандр Карателя
+  description: Тяжёлый бронескафандр, защищающий от большинства встречаемых видов повреждений, обеспечивающий максимальную защиту носителю.
+  components:
+  - type: Sprite
+    sprite: _DeadSpace/Clothing/OuterClothing/Hardsuits/executioner.rsi
+  - type: Clothing
+    sprite: _DeadSpace/Clothing/OuterClothing/Hardsuits/executioner.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitExecutioner
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag

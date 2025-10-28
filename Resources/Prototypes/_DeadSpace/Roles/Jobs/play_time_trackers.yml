@@ -36,3 +36,21 @@
 
 - type: playTimeTracker
   id: JobTaipanTechnicalOperationsSupervisor
+
+- type: playTimeTracker
+  id: JobExecutioner
+
+- type: playTimeTracker
+  id: JobAdaxEVOLeader
+
+- type: playTimeTracker
+  id: JobAdaxEVOAgent
+
+- type: playTimeTracker
+  id: JobCMULeader
+
+- type: playTimeTracker
+  id: JobCMUOperative
+
+- type: playTimeTracker
+  id: JobCMUMedic

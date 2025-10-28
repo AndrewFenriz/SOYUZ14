@@ -174,3 +174,111 @@
     color: "#ffeead"
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
+
+# SMU Leader
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieCommander
+  id: ClothingHeadHelmetHardsuitSMULeader
+  name: шлем скафандра лидера СМП
+  description: Защитный шлем лидера специального мобильного подразделения Синдиката.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _DeadSpace/Clothing/Head/Hardsuits/smuleader.rsi
+  - type: Clothing
+    sprite: _DeadSpace/Clothing/Head/Hardsuits/smuleader.rsi
+  - type: PointLight
+    color: "#55d42e"
+    radius: 6
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
+# SMU Operative
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndie
+  id: ClothingHeadHelmetHardsuitSMUOperative
+  name: шлем скафандра СМП
+  description: Защитный шлем для оперативников специального мобильного подразделения Синдиката.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _DeadSpace/Clothing/Head/Hardsuits/smuoperative.rsi
+  - type: Clothing
+    sprite: _DeadSpace/Clothing/Head/Hardsuits/smuoperative.rsi
+  - type: PointLight
+    color: "#55d42e"
+    radius: 6
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
+# SMU Medic
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSyndieMedic
+  id: ClothingHeadHelmetHardsuitSMUMedic
+  name: шлем скафандра медика СМП
+  description: Защитный шлем медика специального мобильного подразделения Синдиката.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _DeadSpace/Clothing/Head/Hardsuits/smumedic.rsi
+  - type: Clothing
+    sprite: _DeadSpace/Clothing/Head/Hardsuits/smumedic.rsi
+  - type: PointLight
+    color: "#309512"
+    radius: 6
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
+# Adax EVO Leader
+- type: entity
+  parent: ClothingHeadHelmetCBURNLeader
+  id: ClothingHeadHelmetAdaxEVOLeader
+  name: шлем скафандра лидера Adax EVO
+  description: Специализированный тактический шлем для лидеров.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _DeadSpace/Clothing/Head/Hardsuits/adaxevoleader.rsi
+  - type: Clothing
+    sprite: _DeadSpace/Clothing/Head/Hardsuits/adaxevoleader.rsi
+  - type: PointLight
+    color: "#ffffff"
+    radius: 6
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
+# Adax EVO Agent
+- type: entity
+  parent: ClothingHeadHelmetCBURN
+  id: ClothingHeadHelmetAdaxEVOAgent
+  name: шлем скафандра агента Adax EVO
+  description: Компактный шлем для тактических операций.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _DeadSpace/Clothing/Head/Hardsuits/adaxevoagent.rsi
+  - type: Clothing
+    sprite: _DeadSpace/Clothing/Head/Hardsuits/adaxevoagent.rsi
+  - type: PointLight
+    color: "#ffffff"
+    radius: 6
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
+# Executioner
+- type: entity
+  parent: ClothingHeadHelmetHardsuitDeathsquad
+  id: ClothingHeadHelmetHardsuitExecutioner
+  name: шлем скафандра Карателя
+  description: Хорошо защищённый шлем оперативника Карательного отряда Синдиката.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _DeadSpace/Clothing/Head/Hardsuits/executioner.rsi
+  - type: Clothing
+    sprite: _DeadSpace/Clothing/Head/Hardsuits/executioner.rsi
+  - type: PointLight
+    color: "#af0000"
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
