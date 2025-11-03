@@ -11,8 +11,8 @@
 - type: latheRecipe
   abstract: true
   parent: BaseWeaponRecipe
-  id: BaseWeaponRecipeLong
-  completetime: 5
+  id: BaseWeaponRecipeVeryLong
+  completetime: 6
 
 ## Weapons
 

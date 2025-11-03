@@ -29,8 +29,6 @@
   id: BaseWeaponRecipeMelee
   completetime: 2
 
-# Recipes
-
 - type: latheRecipe
   abstract: true
   parent: BaseWeaponRecipe
@@ -40,8 +38,8 @@
 - type: latheRecipe
   abstract: true
   parent: BaseWeaponRecipe
-  id: BaseWeaponRecipeVeryLong
-  completetime: 6
+  id: BaseWeaponRecipeLong
+  completetime: 5
 
 - type: latheRecipe
   abstract: true
