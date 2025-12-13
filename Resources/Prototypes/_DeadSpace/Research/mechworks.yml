@@ -243,22 +243,6 @@
   technologyPrerequisites:
   - TaipanHardsuitsBasic
 
-- type: technology
-  id: TaipanEliteHardsuits
-  name: research-technology-elite-syndicate-hardsuits
-  icon:
-    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
-    state: icon
-  discipline: TaipanMechworks
-  tier: 2
-  cost: 25000
-  diskAvailable: false
-  recipeUnlocks:
-  - ClothingOuterHardsuitSyndieElite
-  - ClothingOuterHardsuitSyndieCommander
-  technologyPrerequisites:
-  - TaipanHardsuits
-
 # Tier 3
 
 - type: technology

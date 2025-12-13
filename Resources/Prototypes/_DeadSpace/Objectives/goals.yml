@@ -98,10 +98,10 @@
   text: "/Paperwork/StationGoal/OrbitalBunker.xml"
   modifyStationBalance: 30000
   extraStamps:
-    - stampedName: Департамент Вооруженных Сил NanoTrasen
-      stampedColor: "#505050"
-    - stampedName: stamp-component-stamped-name-centcom
-      stampedColor: "#006600"
+  - stampedName: Департамент Вооруженных Сил NanoTrasen
+    stampedColor: "#505050"
+  - stampedName: stamp-component-stamped-name-centcom
+    stampedColor: "#006600"
 
 - type: stationGoal
   id: Anomalies
@@ -158,54 +158,6 @@
   extraStamps:
   - stampedName: stamp-component-stamped-name-centcom
     stampedColor: "#006600"
-
-- type: stationGoal
-  id: ShuttleMedical
-  text: "/Paperwork/StationGoal/ShuttleMedical.xml"
-  extraStamps:
-  - stampedName: stamp-component-stamped-name-centcom
-    stampedColor: "#006600"
-
-
-- type: stationGoal
-  id: ShuttleMiner
-  text: "/Paperwork/StationGoal/ShuttleMiner.xml"
-  extraStamps:
-  - stampedName: stamp-component-stamped-name-centcom
-    stampedColor: "#006600"
-
-
-- type: stationGoal
-  id: ShuttleRND
-  text: "/Paperwork/StationGoal/ShuttleRND.xml"
-  extraStamps:
-  - stampedName: stamp-component-stamped-name-centcom
-    stampedColor: "#006600"
-
-
-- type: stationGoal
-  id: ShuttleDock
-  text: "/Paperwork/StationGoal/ShuttleDock.xml"
-  extraStamps:
-  - stampedName: stamp-component-stamped-name-centcom
-    stampedColor: "#006600"
-
-
-- type: stationGoal
-  id: Museum
-  text: "/Paperwork/StationGoal/Museum.xml"
-  extraStamps:
-  - stampedName: stamp-component-stamped-name-centcom
-    stampedColor: "#006600"
-
-
-- type: stationGoal
-  id: Satellite
-  text: "/Paperwork/StationGoal/Satellite.xml"
-  extraStamps:
-  - stampedName: stamp-component-stamped-name-centcom
-    stampedColor: "#006600"
-
 
 - type: stationGoal
   id: PlanetoidUrbanization

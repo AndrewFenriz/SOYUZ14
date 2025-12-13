@@ -64,19 +64,6 @@
   - FauxTileAstroAsteroidSand
 
 - type: technology
-  id: TaipanBasicHypospray
-  name: research-technology-basic-hypospray
-  icon:
-    sprite: _ADT/Objects/Specific/cyberhypo.rsi
-    state: hypo
-  discipline: TaipanLifeSupport
-  tier: 1
-  cost: 10000
-  diskAvailable: false
-  recipeUnlocks:
-  - ADTCyberHypospray
-
-- type: technology
   id: TaipanSustainableContainers
   name: research-technology-sustainable-containers
   icon:
@@ -192,20 +179,6 @@
   diskAvailable: false
   recipeUnlocks:
   - CargoTelepadMachineCircuitboardTaipan
-
-- type: technology
-  id: TaipanHypopen
-  name: research-technology-hypopen
-  icon:
-    sprite: Objects/Misc/pens.rsi
-    state: pen
-  discipline: TaipanLifeSupport
-  tier: 2
-  cost: 25000
-  diskAvailable: false
-  recipeUnlocks:
-  - Hypopen
-  - HypoDart
 
 - type: technology
   id: TaipanArmorVest

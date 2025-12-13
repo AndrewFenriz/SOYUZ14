@@ -32,40 +32,10 @@
   id: BorgSecTorso
 
 - type: Tag
-  id: DarkFlower
+  id: BulletLightestRifle
 
 - type: Tag
-  id: DrinkBeerBottleFull
-
-- type: Tag
-  id: CakeBrain
-
-- type: Tag
-  id: CatEmotes
-
-- type: Tag
-  id: CaviarHolo
-
-- type: Tag
-  id: ChameleonProjector
-
-- type: Tag
-  id: DarkFlower
-
-- type: Tag
-  id: DrinkBeerBottleFull
-
-- type: Tag
-  id: CakeBrain
-
-- type: Tag
-  id: CatEmotes
-
-- type: Tag
-  id: CaviarHolo
-
-- type: Tag
-  id: ChameleonProjector
+  id: BulletLightestRifleIncendiary
 
 - type: Tag
   id: BulletLightestRiflePractice
@@ -74,20 +44,10 @@
   id: BulletLightestRifleUranium
 
 - type: Tag
-  id: BulletLightestRifleIncendiary
+  id: CakeBrain
 
 - type: Tag
-  id: BulletLightestRifle
-
-- type: Tag
-  id: CleanerGrenade
-
-- type: Tag
-
-  id: ChefGoldenKnife
-
-- type: Tag
-  id: CartridgeLightestRifleUranium
+  id: CartridgeLightestRifle
 
 - type: Tag
   id: CartridgeLightestRifleIncendiary
@@ -96,10 +56,22 @@
   id: CartridgeLightestRiflePractice
 
 - type: Tag
-  id: CartridgeLightestRifle
+  id: CartridgeLightestRifleUranium
 
 - type: Tag
-  id: CloningPodMachineCircuitboard
+  id: CatEmotes
+
+- type: Tag
+  id: CaviarHolo
+
+- type: Tag
+  id: ChameleonProjector
+
+- type: Tag
+  id: ChefGoldenKnife
+
+- type: Tag
+  id: CleanerGrenade
 
 - type: Tag
   id: CloningPodMachineCircuitboard
@@ -108,7 +80,13 @@
   id: CompactDefibrillator
 
 - type: Tag
+  id: DarkFlower
+
+- type: Tag
   id: DeathNettle
+
+- type: Tag
+  id: Demon
 
 - type: Tag
   id: DockCentcommERT
@@ -117,7 +95,7 @@
   id: DonkCo
 
 - type: Tag
-  id: Demon
+  id: DrinkBeerBottleFull
 
 - type: Tag
   id: EnergyCartridge
@@ -132,19 +110,19 @@
   id: EncryptionTaipan
 
 - type: Tag
-  id: FlamethrowerBackTank
-
-- type: Tag
-  id: FlamethrowerNozzle
+  id: FelinidEmotes
 
 - type: Tag
   id: FelinidFood
 
 - type: Tag
-  id: FelinidEmotes
+  id: FittableInBackpackCase
 
 - type: Tag
-  id: FittableInBackpackCase
+  id: FlamethrowerBackTank
+
+- type: Tag
+  id: FlamethrowerNozzle
 
 - type: Tag
   id: FoodCheeseSlice
@@ -198,6 +176,18 @@
   id: LightReplacer
 
 - type: Tag
+  id: MagazineBoxLightestRifle
+
+- type: Tag
+  id: MagazineBoxLightestRifleIncendiary
+
+- type: Tag
+  id: MagazineBoxLightestRiflePractice
+
+- type: Tag
+  id: MagazineBoxLightestRifleUranium
+
+- type: Tag
   id: MagazineCarbineSKS
 
 - type: Tag
@@ -225,15 +215,6 @@
   id: MukhtarWearable
 
 - type: Tag
-  id: PinkFlower
-
-- type: Tag
-  id: PurpleFlower
-
-- type: Tag
-  id: RedFlower
-
-- type: Tag
   id: Nanopaste
 
 - type: Tag
@@ -241,6 +222,9 @@
 
 - type: Tag
   id: NoodlesCopy
+
+- type: Tag
+  id: PinkFlower
 
 - type: Tag
   id: PistolCobra
@@ -255,16 +239,7 @@
   id: Plasteel
 
 - type: Tag
-  id: MagazineBoxLightestRiflePractice
-
-- type: Tag
-  id: MagazineBoxLightestRifleIncendiary
-
-- type: Tag
-  id: MagazineBoxLightestRifleUranium
-
-- type: Tag
-  id: MagazineBoxLightestRifle
+  id: PurpleFlower
 
 - type: Tag
   id: Radiance
@@ -273,16 +248,7 @@
   id: RealCapfruit
 
 - type: Tag
-  id: RevolverPython
-
-- type: Tag
-  id: ShotgunBulldog
-
-- type: Tag
-  id: Radiance
-
-- type: Tag
-  id: RealCapfruit
+  id: RedFlower
 
 - type: Tag
   id: RevolverPython
@@ -292,15 +258,6 @@
 
 - type: Tag
   id: SiliconIPCEmotes
-
-- type: Tag
-  id: SlimePersonEmotes
-
-- type: Tag
-  id: SMGTommyGun
-
-- type: Tag
-  id: SMGTommyGunCap
 
 - type: Tag
   id: SlimePersonEmotes

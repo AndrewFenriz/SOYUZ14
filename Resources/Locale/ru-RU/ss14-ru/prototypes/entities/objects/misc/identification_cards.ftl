@@ -178,7 +178,6 @@ ent-WizardIDCard = ID-карта мага
 ent-SeniorServiceIDCard = ID карта управленца сервисного отдела
 ent-SeniorCourierIDCard = ID-карта ведущего логиста
 ent-SecurityPilotIDCard = ID-карта пилота СБ
-ent-SeniorServiceIDCard = ID-карта менеджера
 ent-UniversalIDCard = универсальная ID-карта
     .desc = ID-карта, которая позволит вам осуществить свои самые сокровенные желания.
     .suffix = Админ
