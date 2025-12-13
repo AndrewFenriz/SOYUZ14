@@ -50,6 +50,24 @@
   id: ChameleonProjector
 
 - type: Tag
+  id: DarkFlower
+
+- type: Tag
+  id: DrinkBeerBottleFull
+
+- type: Tag
+  id: CakeBrain
+
+- type: Tag
+  id: CatEmotes
+
+- type: Tag
+  id: CaviarHolo
+
+- type: Tag
+  id: ChameleonProjector
+
+- type: Tag
   id: BulletLightestRiflePractice
 
 - type: Tag
@@ -79,6 +97,9 @@
 
 - type: Tag
   id: CartridgeLightestRifle
+
+- type: Tag
+  id: CloningPodMachineCircuitboard
 
 - type: Tag
   id: CloningPodMachineCircuitboard
@@ -258,7 +279,28 @@
   id: ShotgunBulldog
 
 - type: Tag
-  id: SiliconIPSIPCEmotes
+  id: Radiance
+
+- type: Tag
+  id: RealCapfruit
+
+- type: Tag
+  id: RevolverPython
+
+- type: Tag
+  id: ShotgunBulldog
+
+- type: Tag
+  id: SiliconIPCEmotes
+
+- type: Tag
+  id: SlimePersonEmotes
+
+- type: Tag
+  id: SMGTommyGun
+
+- type: Tag
+  id: SMGTommyGunCap
 
 - type: Tag
   id: SlimePersonEmotes

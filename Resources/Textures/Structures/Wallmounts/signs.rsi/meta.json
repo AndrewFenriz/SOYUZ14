@@ -29,6 +29,9 @@
       "name": "arrivals"
         },
         {
+            "name": "arrivals"
+        },
+        {
             "name": "armory"
     },
     {
@@ -158,6 +161,10 @@
     },
     {
       "name": "direction_chemistry",
+            "directions": 4
+        },
+        {
+            "name": "direction_evac_glow",
             "directions": 4
         },
         {
