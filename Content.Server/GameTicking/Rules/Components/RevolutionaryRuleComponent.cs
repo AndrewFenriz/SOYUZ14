@@ -28,13 +28,5 @@ public sealed partial class RevolutionaryRuleComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan ShuttleCallTime = TimeSpan.FromMinutes(5);
 
-    public RevolutionaryStage Stage = RevolutionaryStage.Initial;
-
     public readonly float Ratio = 0.35f;
-}
-
-public enum RevolutionaryStage : byte
-{
-    Initial,
-    Massacre
 }

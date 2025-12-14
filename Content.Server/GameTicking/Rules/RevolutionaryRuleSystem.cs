@@ -76,7 +76,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         SubscribeLocalEvent<CommandStaffComponent, MobStateChangedEvent>(OnCommandMobStateChanged);
 
         SubscribeLocalEvent<HeadRevolutionaryComponent, HeadRevConvertActionEvent>(OnTargetWithConvertWindow);
-        SubscribeLocalEvent<HeadRevolutionaryComponent, AfterFlashedEvent>(OnPostFlash);
+
         SubscribeLocalEvent<HeadRevolutionaryComponent, MobStateChangedEvent>(OnHeadRevMobStateChanged);
 
         SubscribeLocalEvent<RevolutionaryRoleComponent, GetBriefingEvent>(OnGetBriefing);
@@ -99,48 +99,10 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         component.Check = _timing.CurTime + component.TimerWait;
 
-        if (component.Stage != RevolutionaryStage.Initial || !(GetRevsFraction() >= component.Ratio) && !CheckCommandLose())
+        if (CheckRevsLose())
         {
-            if (!CheckRevsLose())
-                return;
-
-            _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("rev-alert-stage-massacre-end-with-rev-lost"),
-                colorOverride: Color.Green,
-                usePresetTTS: true);
-
             _roundEnd.DoRoundEndBehavior(RoundEndBehavior.ShuttleCall, component.ShuttleCallTime);
             GameTicker.EndGameRule(uid, gameRule);
-        }
-        else
-        {
-            component.Stage = RevolutionaryStage.Massacre;
-
-            foreach (var station in _stationSystem.GetStationsSet())
-            {
-                //Maybe it's worth checking the codes "above"?
-                if (_npcFaction.IsMember(station, "NanoTrasen"))
-                    _alertLevel.SetLevel(station, "red", false, true, false, false);
-            }
-
-            var headRevsNames = new List<string>();
-
-            var query = EntityQueryEnumerator<HeadRevolutionaryComponent>();
-            while (query.MoveNext(out var heads, out var _))
-            {
-                var name = EntityManager.GetComponent<MetaDataComponent>(heads).EntityName;
-                headRevsNames.Add(name);
-
-                RaiseLocalEvent(heads, new NewRevStageEvent());
-            }
-
-            if (headRevsNames.Count == 0)
-                return;
-
-            var namesString = string.Join(", ", headRevsNames);
-            _chatSystem.DispatchGlobalAnnouncement(
-                Loc.GetString("rev-alert-stage-massacre-start", ("headRevsNames", namesString)),
-                colorOverride: Color.Red,
-                usePresetTTS: true);
         }
     }
 
@@ -231,7 +193,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     }
 
     /// <summary>
-    /// Called when a Head Rev uses a flash in melee to convert somebody else.
+    /// Called when a Head Rev accepts a voluntary convert request.
     /// </summary>
     public void Convert(EntityUid headRevUid, EntityUid targetUid)
     {
@@ -266,61 +228,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             }
         }
 
-        if (mindId == default || !_role.MindHasRole<RevolutionaryRoleComponent>(mindId))
-        {
-            _role.MindAddRole(mindId, "MindRoleRevolutionary");
-        }
-
-        if (mind is { UserId: not null } && _player.TryGetSessionById(mind.UserId, out var session))
-            _antag.SendBriefing(session, Loc.GetString("rev-role-greeting"), Color.Red, revComp.RevStartSound);
-    }
-
-    /// <summary>
-    /// Called when a Head Rev uses a flash in melee to convert somebody else.
-    /// </summary>
-    private void OnPostFlash(EntityUid uid, HeadRevolutionaryComponent comp, ref AfterFlashedEvent ev)
-    {
-        if (uid != ev.User || !ev.Melee)
-            return;
-
-        if (comp.MassacreStage == false)
-            return;
-
-        var alwaysConvertible = HasComp<AlwaysRevolutionaryConvertibleComponent>(ev.Target);
-
-        if (!_mind.TryGetMind(ev.Target, out var mindId, out var mind) && !alwaysConvertible)
-            return;
-
-        if (HasComp<RevolutionaryComponent>(ev.Target) ||
-            HasComp<MindShieldComponent>(ev.Target) ||
-            !HasComp<HumanoidAppearanceComponent>(ev.Target) &&
-            !alwaysConvertible ||
-            !_mobState.IsAlive(ev.Target) ||
-            HasComp<ZombieComponent>(ev.Target))
-        {
-            return;
-        }
-
-        _npcFaction.AddFaction(ev.Target, RevolutionaryNpcFaction);
-        var revComp = EnsureComp<RevolutionaryComponent>(ev.Target);
-
-        if (ev.User != null)
-        {
-            _adminLogManager.Add(LogType.Mind,
-                LogImpact.Medium,
-                $"{ToPrettyString(ev.User.Value)} converted {ToPrettyString(ev.Target)} into a Revolutionary");
-
-            if (_mind.TryGetMind(ev.User.Value, out var revMindId, out _))
-            {
-                if (_role.MindHasRole<RevolutionaryRoleComponent>(revMindId, out var role))
-                {
-                    role.Value.Comp2.ConvertedCount++;
-                    Dirty(role.Value.Owner, role.Value.Comp2);
-                }
-            }
-        }
-
-        if (mindId == default || !_role.MindHasRole<RevolutionaryRoleComponent>(mindId))
+        if (mindId != default && !_role.MindHasRole<RevolutionaryRoleComponent>(mindId))
         {
             _role.MindAddRole(mindId, "MindRoleRevolutionary");
         }
