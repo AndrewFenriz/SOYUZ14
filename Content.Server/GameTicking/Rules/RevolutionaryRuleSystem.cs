@@ -8,10 +8,8 @@ using Content.Server.Revolutionary;
 using Content.Server.Revolutionary.Components;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
-using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Database;
-using Content.Shared.Flash;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
@@ -33,12 +31,6 @@ using Content.Shared.Revolutionary;
 using Robust.Server.Player;
 using Content.Server.Actions;
 using Robust.Shared.Player;
-using Content.Server.Station.Components;
-using Content.Server.AlertLevel;
-using System.Linq;
-using Content.Shared.NPC.Components;
-using Content.Server.Chat.Systems;
-using Content.Shared.Mind;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -48,7 +40,6 @@ namespace Content.Server.GameTicking.Rules;
 public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleComponent>
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly EuiManager _euiMan = default!;
     [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -63,8 +54,6 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
 
     //Used in OnPostFlash, no reference to the rule component is available
     public readonly ProtoId<NpcFactionPrototype> RevolutionaryNpcFaction = "Revolutionary";
@@ -99,7 +88,9 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         component.Check = _timing.CurTime + component.TimerWait;
 
-        if (CheckRevsLose())
+        var outcome = GetRevolutionaryOutcome();
+
+        if (outcome == "rev-all-command-revs")
         {
             _roundEnd.DoRoundEndBehavior(RoundEndBehavior.ShuttleCall, component.ShuttleCallTime);
             GameTicker.EndGameRule(uid, gameRule);
@@ -113,12 +104,8 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     {
         base.AppendRoundEndText(uid, component, gameRule, ref args);
 
-        var revsLost = CheckRevsLose();
-        var commandLost = CheckCommandLose();
-        // This is (revsLost, commandsLost) concatted together
-        // (moony wrote this comment idk what it means)
-        var index = (commandLost ? 1 : 0) | (revsLost ? 2 : 0);
-        args.AddLine(Loc.GetString(Outcomes[index]));
+        var outcome = GetRevolutionaryOutcome();
+        args.AddLine(Loc.GetString(outcome));
 
         var sessionData = _antag.GetAntagIdentifiers(uid);
         args.AddLine(Loc.GetString("rev-headrev-count", ("initialCount", sessionData.Count)));
@@ -249,15 +236,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     /// </summary>
     private bool CheckCommandLose()
     {
-        var commandList = new List<EntityUid>();
-
-        var heads = AllEntityQuery<CommandStaffComponent>();
-        while (heads.MoveNext(out var id, out _))
-        {
-            commandList.Add(id);
-        }
-
-        return IsGroupDetainedOrDead(commandList, true, true, true);
+        return AreAllCommandStaffDead() || AreAllCommandStaffDetained() || AreAllCommandStaffConverted();
     }
 
     /// <summary>
@@ -318,17 +297,10 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     private bool CheckRevsLose()
     {
         var stunTime = TimeSpan.FromSeconds(4);
-        var headRevList = new List<EntityUid>();
-
-        var headRevs = AllEntityQuery<HeadRevolutionaryComponent, MobStateComponent>();
-        while (headRevs.MoveNext(out var uid, out _, out _))
-        {
-            headRevList.Add(uid);
-        }
 
         // If no Head Revs are alive all normal Revs will lose their Rev status and rejoin Nanotrasen
         // Cuffing Head Revs is not enough - they must be killed.
-        if (IsGroupDetainedOrDead(headRevList, false, false, false))
+        if (AreAllHeadRevsDead())
         {
             var rev = AllEntityQuery<RevolutionaryComponent, MindContainerComponent>();
             while (rev.MoveNext(out var uid, out _, out var mc))
@@ -359,66 +331,89 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         return false;
     }
 
-    /// <summary>
-    /// Will take a group of entities and check if these entities are alive, dead or cuffed.
-    /// </summary>
-    /// <param name="list">The list of the entities</param>
-    /// <param name="checkOffStation">Bool for if you want to check if someone is in space and consider them missing in action. (Won't check when emergency shuttle arrives just in case)</param>
-    /// <param name="countCuffed">Bool for if you don't want to count cuffed entities.</param>
-    /// <param name="countRevolutionaries">Bool for if you want to count revolutionaries.</param>
-    /// <returns></returns>
-    private bool IsGroupDetainedOrDead(List<EntityUid> list, bool checkOffStation, bool countCuffed, bool countRevolutionaries)
+    private bool AreAllCommandStaffConverted()
     {
-        var gone = 0;
-
-        foreach (var entity in list)
+        var heads = AllEntityQuery<CommandStaffComponent>();
+        while (heads.MoveNext(out var uid, out _))
         {
-            if (TryComp<CuffableComponent>(entity, out var cuffed) && cuffed.CuffedHandCount > 0 && countCuffed)
-            {
-                gone++;
-                continue;
-            }
-
-            if (TryComp<MobStateComponent>(entity, out var state))
-            {
-                if (state.CurrentState == MobState.Dead || state.CurrentState == MobState.Invalid)
-                {
-                    gone++;
-                    continue;
-                }
-
-                if (checkOffStation && _stationSystem.GetOwningStation(entity) == null && !_emergencyShuttle.EmergencyShuttleArrived)
-                {
-                    gone++;
-                    continue;
-                }
-            }
-            //If they don't have the MobStateComponent they might as well be dead.
-            else
-            {
-                gone++;
-                continue;
-            }
-
-            if ((HasComp<RevolutionaryComponent>(entity) || HasComp<HeadRevolutionaryComponent>(entity)) && countRevolutionaries)
-            {
-                gone++;
-                continue;
-            }
+            if (!HasComp<RevolutionaryComponent>(uid))
+                return false;
         }
 
-        return gone == list.Count || list.Count == 0;
+        return true;
     }
 
-    private static readonly string[] Outcomes =
+    private bool AreAllCommandStaffDetained()
     {
-        // revs survived and heads survived... how
-        "rev-reverse-stalemate",
-        // revs won and heads died
-        "rev-won",
-        // revs lost and heads survived
-        "rev-lost",
-        // revs lost and heads died
-        "rev-stalemate"
-    };
+        var heads = AllEntityQuery<CommandStaffComponent>();
+        while (heads.MoveNext(out var uid, out _))
+        {
+            if (TryComp<CuffableComponent>(uid, out var cuffed))
+            {
+                if (cuffed.CuffedHandCount == 0)
+                    return false;
+            }
+            else
+                return false;
+        }
+
+        return true;
+    }
+
+    private bool AreAllCommandStaffDead()
+    {
+        var heads = AllEntityQuery<CommandStaffComponent, MobStateComponent>();
+        while (heads.MoveNext(out _, out _, out var mob))
+        {
+            if (mob.CurrentState != MobState.Dead &&
+                mob.CurrentState != MobState.Invalid)
+                return false;
+        }
+
+        return true;
+    }
+
+    private bool AreAllHeadRevsDead()
+    {
+        var headRevs = AllEntityQuery<HeadRevolutionaryComponent, MobStateComponent>();
+        while (headRevs.MoveNext(out _, out _, out var mob))
+        {
+            if (mob.CurrentState != MobState.Dead &&
+                mob.CurrentState != MobState.Invalid)
+                return false;
+        }
+
+        return true;
+    }
+
+    private string GetRevolutionaryOutcome()
+    {
+        var allCommandConverted = AreAllCommandStaffConverted();
+        var allCommandDetained = AreAllCommandStaffDetained();
+        var allCommandDead = AreAllCommandStaffDead();
+        var allHeadRevsDead = AreAllHeadRevsDead();
+
+        // All command staff were converted to revolutionaries
+        if (allCommandConverted)
+            return "rev-all-command-revs";
+
+        // All command staff are detained or cuffed
+        if (allCommandDetained)
+            return "rev-command-detained";
+
+        // All command staff are dead but head revs survived
+        if (allCommandDead && !allHeadRevsDead)
+            return "rev-command-dead";
+
+        // All head revs are dead but command staff survived
+        if (allHeadRevsDead && !allCommandDead)
+            return "rev-lost";
+
+        // Both head revs and command staff survived
+        if (!allHeadRevsDead && !allCommandDead)
+            return "rev-reverse-stalemate";
+
+        // Both head revs and command staff are dead
+        return "rev-stalemate";
+    }
 }
