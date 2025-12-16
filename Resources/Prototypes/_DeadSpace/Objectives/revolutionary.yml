@@ -32,7 +32,7 @@
   parent: [BaseRevolutionaryObjective, BaseSurviveObjective]
   id: RevolutionarySurviveObjective
   name: Выжить
-  description: Кто же победит в революции, если вы умрете?
+  description: Чем кровавей ваша революция, тем выше угроза для вашей жизни...
   components:
   - type: Objective
     icon:
