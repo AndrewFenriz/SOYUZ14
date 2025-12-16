@@ -269,6 +269,10 @@
   - type: GameRule
     minPlayers: 35 # DS14
   - type: RevolutionaryRule
+  - type: AntagObjectives
+    objectives:
+    - RevolutionarySurviveObjective
+    - RevolutionaryOverthrowObjective
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
     definitions:

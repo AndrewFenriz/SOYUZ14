@@ -7,7 +7,6 @@ using Content.Server.Popups;
 using Content.Server.Revolutionary;
 using Content.Server.Revolutionary.Components;
 using Content.Server.Roles;
-using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
@@ -30,6 +29,7 @@ using Content.Shared.Cuffs.Components;
 using Content.Shared.Revolutionary;
 using Robust.Server.Player;
 using Content.Server.Actions;
+using Content.Server.DeadSpace.Revolutionary;
 using Robust.Shared.Player;
 
 namespace Content.Server.GameTicking.Rules;
@@ -49,11 +49,11 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RoleSystem _role = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly RevolutionOverthrowConditionSystem _overthrow = default!;
 
     //Used in OnPostFlash, no reference to the rule component is available
     public readonly ProtoId<NpcFactionPrototype> RevolutionaryNpcFaction = "Revolutionary";
@@ -87,14 +87,6 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             return;
 
         component.Check = _timing.CurTime + component.TimerWait;
-
-        var outcome = GetRevolutionaryOutcome();
-
-        if (outcome == "rev-all-command-revs")
-        {
-            _roundEnd.DoRoundEndBehavior(RoundEndBehavior.ShuttleCall, component.ShuttleCallTime);
-            GameTicker.EndGameRule(uid, gameRule);
-        }
     }
 
     protected override void AppendRoundEndText(EntityUid uid,
@@ -148,8 +140,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         if (HasComp<RevolutionaryComponent>(ev.Target) ||
             HasComp<MindShieldComponent>(ev.Target) ||
-            !HasComp<HumanoidAppearanceComponent>(ev.Target) &&
-            !alwaysConvertible ||
+            (!HasComp<HumanoidAppearanceComponent>(ev.Target) && !alwaysConvertible) ||
             !_mobState.IsAlive(ev.Target) ||
             HasComp<ZombieComponent>(ev.Target))
         {
@@ -191,8 +182,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         if (HasComp<RevolutionaryComponent>(targetUid) ||
             HasComp<MindShieldComponent>(targetUid) ||
-            !HasComp<HumanoidAppearanceComponent>(targetUid) &&
-            !alwaysConvertible ||
+            (!HasComp<HumanoidAppearanceComponent>(targetUid) && !alwaysConvertible) ||
             !_mobState.IsAlive(targetUid) ||
             HasComp<ZombieComponent>(targetUid))
         {

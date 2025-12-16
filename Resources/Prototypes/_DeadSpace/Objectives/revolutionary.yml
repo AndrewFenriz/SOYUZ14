@@ -1,0 +1,40 @@
+﻿- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseRevolutionaryObjective
+  components:
+  - type: Objective
+    difficulty: 1.5
+    issuer: objective-condition-revolutionary
+    icon:
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_revolution
+  - type: RoleRequirement
+    roles:
+    - RevolutionaryRole
+
+- type: entity
+  parent: BaseRevolutionaryObjective
+  id: RevolutionaryOverthrowObjective
+  name: Свергните командный состав станции
+  description: Все главы отделов должны быть либо обращены в революцию, либо арестованы, либо мертвы.
+  components:
+  - type: Objective
+    issuer: objective-condition-revolutionary
+    difficulty: 4.0
+    icon:
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_revolution
+  - type: RevolutionOverthrowCondition
+    progress: 0.0
+
+- type: entity
+  parent: [BaseRevolutionaryObjective, BaseSurviveObjective]
+  id: RevolutionarySurviveObjective
+  name: Выжить
+  description: Кто же победит в революции, если вы умрете?
+  components:
+  - type: Objective
+    icon:
+      sprite: Structures/Decoration/banner.rsi
+      state: banner_revolution

@@ -1,0 +1,1 @@
+﻿objective-condition-revolutionary = Революция
